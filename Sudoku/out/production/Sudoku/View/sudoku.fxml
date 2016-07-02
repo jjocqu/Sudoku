@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import View.SudokuView?>
+<?import Model.SudokuModel?>
+<?import java.net.URL?>
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <fx:define>
+        <SudokuModel fx:id="model"/>
+    </fx:define>
+    <stylesheets>
+        <URL value="@View/Sudoku.css" />
+    </stylesheets>
+    <children>
+      <SudokuView id="sudoku" fx:id="grid" model="$model" alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="150.0" maxWidth="150.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="15.0" maxWidth="150.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="150.0" maxWidth="150.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="150.0" prefHeight="150.0" maxHeight="150.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="150.0" prefHeight="150.0" maxHeight="150.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="150.0" prefHeight="150.0" maxHeight="150.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <HBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </HBox.margin>
+      </SudokuView>
+      <Button minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#newGameClicked" text="Button">
+         <HBox.margin>
+            <Insets left="100.0" right="10.0" />
+         </HBox.margin>
+      </Button>
+   </children>
+</HBox>
