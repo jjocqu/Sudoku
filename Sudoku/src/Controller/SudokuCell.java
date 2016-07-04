@@ -1,11 +1,8 @@
 package Controller;
 
 import Model.SudokuModel;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
-
-import java.util.ArrayList;
 
 /**
  * Created by jens on 7/3/2016.
@@ -22,6 +19,10 @@ public class SudokuCell extends TextArea {
         this.row = row;
         this.col = col;
         loadEvents();
+    }
+
+    public void changeContent(String newValue) {
+        setText(newValue);
     }
 
     //these two methodes make sure invalid input is ignored
@@ -50,10 +51,10 @@ public class SudokuCell extends TextArea {
         //make sure length stays 1
         textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.length() == 1) {
-                setText(newValue);
+                validValueEntererd(newValue);
             } else {
                 if (newValue.length() > 1) { // new valid character entered
-                    setText(newValue.substring(1));
+                    validValueEntererd(newValue);
                 }
             }
         });
@@ -64,5 +65,10 @@ public class SudokuCell extends TextArea {
                 setFocused(false);
             }
         });
+    }
+
+    private void validValueEntererd(String newValue) {
+        model.setSquare(row, col, Integer.parseInt(newValue)); //update model
+        setText(newValue); //update view
     }
 }

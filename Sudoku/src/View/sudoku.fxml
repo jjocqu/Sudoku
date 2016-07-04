@@ -34,12 +34,12 @@
             </SudokuView>
         </StackPane>
         <VBox alignment="CENTER">
-            <Button minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#newGameClicked" text="New game">
+            <Button minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#newGameClicked" text="New game" focusTraversable="false">
                 <VBox.margin>
                     <Insets bottom="10.0" top="10.0"/>
                 </VBox.margin>
             </Button>
-            <Button minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#checkSolution" text="Check solution">
+            <Button minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#checkSolution" text="Check solution" focusTraversable="false">
                 <VBox.margin>
                     <Insets bottom="10.0" top="10.0"/>
                 </VBox.margin>

@@ -106,8 +106,8 @@ public class SudokuGame {
             }
         }
 
-        for (int i = 0; i < usedCoordinates.size(); i++) {
-            board.setSquare(usedCoordinates.get(i)[0], usedCoordinates.get(i)[1], randomNumberGenerator.generateInteger(size)+1);
+        for (int[] usedCoordinate : usedCoordinates) {
+            board.setSquare(usedCoordinate[0], usedCoordinate[1], randomNumberGenerator.generateInteger(size) + 1);
         }
 
         //save start locations

@@ -31,7 +31,8 @@ public class SudokuModel implements Observable {
     public boolean setSquare(int row, int col, int value) {
         boolean valid = game.setSquare(row, col, value);
         fireInvalidationEvent();
-
+        //for debugging
+        //game.printBoard();
         return valid;
     }
 
