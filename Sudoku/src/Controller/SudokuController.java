@@ -46,4 +46,9 @@ public class SudokuController {
         newStage.setScene(stageScene);
         newStage.show();
     }
+
+    public void generateSolution() {
+        boolean found = model.generateSolution();
+        System.out.println(found);
+    }
 }

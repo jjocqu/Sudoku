@@ -1,5 +1,8 @@
 package Logic;
 
+import Solvers.BacktrackSolver;
+import Solvers.SudokuSolver;
+
 import java.util.ArrayList;
 
 /**
@@ -18,6 +21,22 @@ public class SudokuGame {
     public SudokuGame() {
         size = Logic.SudokuBoard.getSize();
         addRules();
+    }
+
+    public SudokuGame(SudokuBoard board) {
+        size = Logic.SudokuBoard.getSize();
+        addRules();
+        this.board = board;
+
+        //elements on this board are starting locations
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                int value = board.getSquareValue(i, j);
+                if (value != 0) { // startlocation
+                    startLocations.add(new int[] {i, j});
+                }
+            }
+        }
     }
 
     /**
@@ -68,7 +87,7 @@ public class SudokuGame {
     }
 
     //returns true if valid board
-    private boolean checkRules() {
+    public boolean checkRules() {
         for (Rule rule: rules) {
             if (! rule.checkRegel(board)) { //problem with a rule
                 return false;
@@ -84,6 +103,20 @@ public class SudokuGame {
             }
         }
         return checkRules();
+    }
+
+    //generates solution with backtracksolver
+    public boolean generateSolution() {
+        //first clear all filled in fields by user (they could be wrong)
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                emptySquare(i, j);
+            }
+        }
+
+        //use solver
+        SudokuSolver solver = new BacktrackSolver();
+        return solver.solveSudoku(this);
     }
 
     /*

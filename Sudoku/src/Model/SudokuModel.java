@@ -29,6 +29,12 @@ public class SudokuModel implements Observable {
         fireInvalidationEvent();
     }
 
+    public boolean generateSolution() {
+        boolean found = game.generateSolution();
+        fireInvalidationEvent();
+        return found;
+    }
+
     public int getGameSize() {
         return game.getSize();
     }

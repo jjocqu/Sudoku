@@ -18,6 +18,7 @@ public class SudokuCell extends TextArea {
         this.model = model;
         this.row = row;
         this.col = col;
+        setFocusTraversable(false);
         loadEvents();
     }
 

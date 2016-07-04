@@ -41,6 +41,11 @@
                     <Insets bottom="10.0" top="10.0"/>
                 </VBox.margin>
             </Button>
+            <Button minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#generateSolution" text="Show solution" focusTraversable="false">
+                <VBox.margin>
+                    <Insets bottom="10.0" top="10.0"/>
+                </VBox.margin>
+            </Button>
             <HBox.margin>
                 <Insets left="100.0" right="10.0" />
             </HBox.margin>

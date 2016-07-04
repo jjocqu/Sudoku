@@ -63,7 +63,7 @@ public class SudokuView extends GridPane implements InvalidationListener {
                 SudokuCell num = new SudokuCell("", model, i, j);
                 num.setPrefSize(50, 50);
                 num.getStyleClass().add("square");
-                num.setFocusTraversable(false);
+
 
                 subGrid.add(num, subGridPaneY, subGridPaneX);
                 cells[i][j] = num;
