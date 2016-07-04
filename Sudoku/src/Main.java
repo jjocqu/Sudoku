@@ -1,5 +1,4 @@
 import Controller.SudokuController;
-import Model.SudokuGame;
 import Model.SudokuModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

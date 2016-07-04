@@ -1,5 +1,6 @@
 package Model;
 
+import Logic.SudokuGame;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 
@@ -27,14 +28,24 @@ public class SudokuModel implements Observable {
         return game.getSize();
     }
 
-    public void setSquare(int row, int col, int value) {
-        game.setSquare(row, col, value);
+    public boolean setSquare(int row, int col, int value) {
+        boolean valid = game.setSquare(row, col, value);
         fireInvalidationEvent();
+
+        return valid;
     }
 
     public void emptySquare(int row, int col) {
         game.emptySquare(row, col);
         fireInvalidationEvent();
+    }
+
+    public boolean hasWon() {
+        return game.hasWon();
+    }
+
+    public boolean isStartLocation(int row, int col) {
+        return game.isStartLocation(row, col);
     }
 
     public int getSquareValue(int row, int col) {

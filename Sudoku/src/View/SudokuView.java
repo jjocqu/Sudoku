@@ -1,14 +1,11 @@
 package View;
 
-import Controller.CellClickedEvent;
+import Controller.SudokuCell;
 import Model.SudokuModel;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 
 /**
  * Created by jens on 7/2/2016.
@@ -66,12 +63,18 @@ public class SudokuView extends GridPane implements InvalidationListener {
                 int subGridPaneX = i%3;
                 int subGridPaneY = j%3;
                 GridPane subGrid = gridpanes[gridPaneX][gridPaneY];
-                Label label = new Label("" + value);
-                label.setPrefSize(50, 50);
-                label.setAlignment(Pos.CENTER);
-                label.getStyleClass().add("square");
-                label.setOnMouseClicked(new CellClickedEvent(i, j, model, this));
-                subGrid.add(label, subGridPaneY, subGridPaneX);
+
+                TextArea num;
+                if (value == 0) {
+                    num = new SudokuCell("", model, i, j);
+                } else {
+                    num = new SudokuCell("" + value, model, i, j);
+                }
+                num.setPrefSize(50, 50);
+                num.getStyleClass().add("square");
+
+                subGrid.add(num, subGridPaneY, subGridPaneX);
+
             }
         }
     }
