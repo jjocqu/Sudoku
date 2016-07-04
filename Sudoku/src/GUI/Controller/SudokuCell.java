@@ -1,6 +1,6 @@
-package Controller;
+package GUI.Controller;
 
-import Model.SudokuModel;
+import GUI.Model.SudokuModel;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 

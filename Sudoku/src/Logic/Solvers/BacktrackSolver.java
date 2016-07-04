@@ -1,4 +1,4 @@
-package Solvers;
+package Logic.Solvers;
 
 import Logic.SudokuGame;
 
@@ -27,8 +27,16 @@ public class BacktrackSolver implements SudokuSolver{
 
     private boolean backtrack(int row, int col) {
 
-        if (row+1 == game.getSize() && col+1 == game.getSize()) {
-            return true; //all cells filled in
+        if (row+1 == game.getSize() && col+1 == game.getSize()) { //special case: last field => no next cell
+            for (int x = 1; x < game.getSize()+1; x++) { //fill in last field
+                game.setSquare(row, col, x);
+                if (game.checkRules()) {
+                    return true;
+                }
+            }
+
+            game.emptySquare(row, col);
+            return false;
         }
 
         for (int x = 1; x < game.getSize()+1; x++) { //all possible values

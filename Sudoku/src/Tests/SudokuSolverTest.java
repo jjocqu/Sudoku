@@ -2,8 +2,8 @@ package Tests;
 
 import Logic.SudokuBoard;
 import Logic.SudokuGame;
-import Solvers.BacktrackSolver;
-import Solvers.SudokuSolver;
+import Logic.Solvers.BacktrackSolver;
+import Logic.Solvers.SudokuSolver;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

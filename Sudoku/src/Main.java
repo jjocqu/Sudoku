@@ -1,5 +1,4 @@
-import Controller.SudokuController;
-import Model.SudokuModel;
+import GUI.Controller.SudokuController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,7 +10,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("View\\sudoku.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("GUI\\View\\sudoku.fxml"));
         primaryStage.setTitle("Sudoku game");
         SudokuController controller = new SudokuController();
         loader.setController(controller);

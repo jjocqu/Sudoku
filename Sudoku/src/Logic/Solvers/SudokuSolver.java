@@ -1,4 +1,4 @@
-package Solvers;
+package Logic.Solvers;
 
 import Logic.SudokuGame;
 

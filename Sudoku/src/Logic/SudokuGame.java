@@ -1,7 +1,7 @@
 package Logic;
 
-import Solvers.BacktrackSolver;
-import Solvers.SudokuSolver;
+import Logic.Solvers.BacktrackSolver;
+import Logic.Solvers.SudokuSolver;
 
 import java.util.ArrayList;
 
@@ -42,6 +42,7 @@ public class SudokuGame {
     /**
      * creates a game by creating a valid random game
      * if a random game isn't valid, keep trying untill it is valid
+     * is temporary: a random game doesn't always have a unique solution!!!
      */
     public void createGame() {
         boolean foundValid = false;
