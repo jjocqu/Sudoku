@@ -17,8 +17,14 @@ public class SudokuView extends GridPane implements InvalidationListener {
     //array of all subgridpanes
     private GridPane[][] gridpanes = new GridPane[3][3];
 
+    //array of all SudokuCell objects
+    private SudokuCell[][] cells = new SudokuCell[9][9];
+
     //creates in each grid a new 3*3 subgridpane
     public SudokuView() {
+
+        this.model = SudokuModel.getModel();
+        this.model.addListener(this);
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -28,54 +34,39 @@ public class SudokuView extends GridPane implements InvalidationListener {
                 gridpanes[i][j] = subGridPane;
             }
         }
-    }
 
-    public SudokuModel getModel() {
-        return model;
-    }
-
-    public void setModel(SudokuModel newModel) {
-        if (newModel != model) {
-            if (model != null) {
-                model.removeListener(this);
-            }
-            model = newModel;
-            if (model != null) {
-                model.addListener(this);
-            }
-        }
+        initializeBoard();
     }
 
     @Override
     public void invalidated(Observable observable) {
-        //clear all previous subgrids
-        for (GridPane[] temp : gridpanes) {
-            for (GridPane subGrid : temp) {
-                subGrid.getChildren().clear();
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                int value = model.getSquareValue(i, j);
+
+                cells[i][j].changeContent(String.valueOf(value));
             }
         }
+    }
 
-        for (int i = 0; i < model.getGameSize(); i++) {
-            for (int j = 0; j < model.getGameSize(); j++) {
-                int value = model.getSquareValue(i, j);
+    //initialize empty board
+    private void initializeBoard() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
                 int gridPaneX = (int) Math.floor(i/3);
                 int gridPaneY = (int) Math.floor(j/3);
                 int subGridPaneX = i%3;
                 int subGridPaneY = j%3;
                 GridPane subGrid = gridpanes[gridPaneX][gridPaneY];
 
-                SudokuCell num;
-                if (value == 0) {
-                    num = new SudokuCell("", model, i, j);
-                } else {
-                    num = new SudokuCell("" + value, model, i, j);
-                }
+                SudokuCell num = new SudokuCell("", model, i, j);
                 num.setPrefSize(50, 50);
                 num.getStyleClass().add("square");
                 num.setFocusTraversable(false);
 
                 subGrid.add(num, subGridPaneY, subGridPaneX);
-
+                cells[i][j] = num;
             }
         }
     }

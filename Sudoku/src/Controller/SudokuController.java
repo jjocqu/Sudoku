@@ -17,8 +17,8 @@ public class SudokuController {
     @FXML
     private GridPane grid;
 
-    public SudokuController(SudokuModel model) {
-        this.model = model;
+    public SudokuController() {
+        this.model = SudokuModel.getModel();
     }
 
     public void initialize() {
@@ -45,7 +45,5 @@ public class SudokuController {
         Scene stageScene = new Scene(pane, 300, 100);
         newStage.setScene(stageScene);
         newStage.show();
-
-        System.out.println(model.hasWon());
     }
 }

@@ -8,14 +8,19 @@ import java.util.ArrayList;
 
 /**
  * Created by jens on 7/2/2016.
+ *
+ * This class is a singleton
+ *
  */
 public class SudokuModel implements Observable {
+
+    private static final SudokuModel model = new SudokuModel();
 
     private ArrayList<InvalidationListener> listeners = new ArrayList<>();
 
     private SudokuGame game = new SudokuGame();
 
-    public SudokuModel() {
+    private SudokuModel() {
 
     }
 
@@ -61,6 +66,10 @@ public class SudokuModel implements Observable {
     @Override
     public void removeListener(InvalidationListener listener) {
         listeners.remove(listener);
+    }
+
+    public static SudokuModel getModel() {
+        return model;
     }
 
     private void fireInvalidationEvent() {

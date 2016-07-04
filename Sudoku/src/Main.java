@@ -13,7 +13,7 @@ public class Main extends Application {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("View\\sudoku.fxml"));
         primaryStage.setTitle("Sudoku game");
-        SudokuController controller = new SudokuController(new SudokuModel());
+        SudokuController controller = new SudokuController();
         loader.setController(controller);
         Parent root = loader.load();
         primaryStage.setScene(new Scene(root, 800, 600));

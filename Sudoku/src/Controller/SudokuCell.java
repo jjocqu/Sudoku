@@ -54,7 +54,7 @@ public class SudokuCell extends TextArea {
                 validValueEntererd(newValue);
             } else {
                 if (newValue.length() > 1) { // new valid character entered
-                    validValueEntererd(newValue);
+                    validValueEntererd(newValue.substring(1));
                 }
             }
         });
