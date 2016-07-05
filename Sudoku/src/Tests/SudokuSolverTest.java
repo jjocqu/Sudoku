@@ -1,5 +1,7 @@
 package Tests;
 
+import Logic.Solvers.GeneratorSolver;
+import Logic.Solvers.RandomBacktrackSolver;
 import Logic.SudokuBoard;
 import Logic.SudokuGame;
 import Logic.Solvers.BacktrackSolver;
@@ -15,7 +17,7 @@ import static org.junit.Assert.*;
  */
 public class SudokuSolverTest {
 
-    private SudokuSolver backtrackSolver = new BacktrackSolver();
+    private BacktrackSolver backtrackSolver;
 
     private SudokuGame game1;
 
@@ -46,14 +48,44 @@ public class SudokuSolverTest {
 
     @After
     public void tearDown() throws Exception {
-
+        for (int i = 0; i < game1.getSize(); i++) {
+            for (int j = 0; j < game1.getSize(); j++) {
+                game1.emptySquare(i, j); //empty the sudoku
+            }
+        }
     }
 
     @Test
     public void testBacktrackSolveSudoku() throws Exception {
+        backtrackSolver = new BacktrackSolver();
         boolean solved = backtrackSolver.solveSudoku(game1);
+
         assertTrue(solved);
         assertTrue(game1.hasWon());
+
+        game1.printBoard();
+    }
+
+    @Test
+    public void testRandomBacktrackSolveSudoku() throws Exception {
+        backtrackSolver = new RandomBacktrackSolver();
+        boolean solved = backtrackSolver.solveSudoku(game1);
+
+        assertTrue(solved);
+        assertTrue(game1.hasWon());
+
+        game1.printBoard();
+    }
+
+    @Test
+    public void testGeneratorSolveSudoku() throws Exception {
+        backtrackSolver = new GeneratorSolver(1, 8, 6);
+        boolean solved = backtrackSolver.solveSudoku(game1);
+
+        //this sudoku has a unique solution so it must be impossible to find another one
+        assertFalse(solved);
+        assertFalse(game1.hasWon());
+
         game1.printBoard();
     }
 }

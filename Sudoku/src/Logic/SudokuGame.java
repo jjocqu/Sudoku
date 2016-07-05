@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class SudokuGame {
 
-    private Logic.SudokuBoard board = new Logic.SudokuBoard();
+    private SudokuBoard board = new SudokuBoard();
     private RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.getGenerator();
     private ArrayList<Rule> rules = new ArrayList<>();
     private int size;
@@ -118,6 +118,10 @@ public class SudokuGame {
         //use solver
         SudokuSolver solver = new BacktrackSolver();
         return solver.solveSudoku(this);
+    }
+
+    public void generateGame() {
+
     }
 
     /*

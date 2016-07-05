@@ -35,6 +35,10 @@ public class SudokuModel implements Observable {
         return found;
     }
 
+    public void generateGame() {
+        game.generateGame();
+    }
+
     public int getGameSize() {
         return game.getSize();
     }

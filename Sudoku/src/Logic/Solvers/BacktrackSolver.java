@@ -4,15 +4,19 @@ import Logic.SudokuGame;
 
 /**
  * Created by jens on 7/4/2016.
+ *
+ * This solver uses a backtracking algorithm
+ *
  */
 public class BacktrackSolver implements SudokuSolver{
 
-    private SudokuGame game;
+    protected SudokuGame game;
+    protected int[] possibleValues;
 
     @Override
     public boolean solveSudoku(SudokuGame game) {
-
         this.game = game;
+        loadPossibleValues();
 
         //find first empty square to start backtrack
         for (int i = 0; i < game.getSize(); i++) {
@@ -25,10 +29,18 @@ public class BacktrackSolver implements SudokuSolver{
         return game.checkRules(); //game completely filled in
     }
 
-    private boolean backtrack(int row, int col) {
+    //fill in possible values
+    protected void loadPossibleValues() {
+        possibleValues = new int[game.getSize()];
+        for (int i = 0; i < game.getSize(); i++) {
+            possibleValues[i] = i+1;
+        }
+    }
+
+    protected boolean backtrack(int row, int col) {
 
         if (row+1 == game.getSize() && col+1 == game.getSize()) { //special case: last field => no next cell
-            for (int x = 1; x < game.getSize()+1; x++) { //fill in last field
+            for (int x: possibleValues) { //fill in last field
                 game.setSquare(row, col, x);
                 if (game.checkRules()) {
                     return true;
@@ -39,7 +51,7 @@ public class BacktrackSolver implements SudokuSolver{
             return false;
         }
 
-        for (int x = 1; x < game.getSize()+1; x++) { //all possible values
+        for (int x: possibleValues) { //all possible values
             game.setSquare(row, col, x);
             if (game.checkRules()) {
                 int[] nextPos = nextPosition(row, col);
@@ -56,7 +68,7 @@ public class BacktrackSolver implements SudokuSolver{
     }
 
     //calculate next position (none starting position)
-    private int[] nextPosition(int row, int col) {
+    protected int[] nextPosition(int row, int col) {
         boolean notFound = true;
 
         while (notFound) {
