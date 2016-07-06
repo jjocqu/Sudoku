@@ -25,7 +25,8 @@ public class SudokuModel implements Observable {
     }
 
     public void createGame() {
-        game.createGame();
+        //game.createGame(); creates a random game
+        game.generateGame();
         fireInvalidationEvent();
     }
 

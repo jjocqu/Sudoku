@@ -44,7 +44,11 @@ public class SudokuView extends GridPane implements InvalidationListener {
             for (int j = 0; j < 9; j++) {
                 int value = model.getSquareValue(i, j);
 
-                cells[i][j].changeContent(String.valueOf(value));
+                if (value == 0) {
+                    cells[i][j].changeContent("");
+                } else {
+                    cells[i][j].changeContent(String.valueOf(value));
+                }
             }
         }
     }

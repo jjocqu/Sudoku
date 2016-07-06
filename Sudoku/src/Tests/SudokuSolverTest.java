@@ -87,5 +87,14 @@ public class SudokuSolverTest {
         assertFalse(game1.hasWon());
 
         game1.printBoard();
+
+        backtrackSolver = new GeneratorSolver(-1, -1, -1);
+        solved = backtrackSolver.solveSudoku(game1);
+
+        //this sudoku has a unique solution so it must be impossible to find another one
+        assertTrue(solved);
+        assertTrue(game1.hasWon());
+
+        game1.printBoard();
     }
 }

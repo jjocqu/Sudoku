@@ -1,6 +1,9 @@
 package Logic;
 
+import Logic.Generators.FullGenerator;
+import Logic.Generators.SudokuGenerator;
 import Logic.Solvers.BacktrackSolver;
+import Logic.Solvers.GeneratorSolver;
 import Logic.Solvers.SudokuSolver;
 
 import java.util.ArrayList;
@@ -100,7 +103,9 @@ public class SudokuGame {
     public boolean hasWon() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (getSquareValue(i, j) == 0) return false; //not completely filled in
+                if (getSquareValue(i, j) == 0) {
+                    return false; //not completely filled in
+                }
             }
         }
         return checkRules();
@@ -121,13 +126,35 @@ public class SudokuGame {
     }
 
     public void generateGame() {
+        //clear all previous fields
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                emptySquare(i, j);
+            }
+        }
+        //generate new game
+        SudokuGenerator generator = new FullGenerator();
+        generator.generateSudoku(this);
 
+        //set start locations
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                int value = board.getSquareValue(i, j);
+                if (value != 0) { // startlocation
+                    startLocations.add(new int[] {i, j});
+                }
+            }
+        }
+    }
+
+    public SudokuBoard getBoard() {
+        return board;
     }
 
     /*
-     * minimum is number of needed squares is 17
-     * we choose 25 random squares
-     */
+         * minimum is number of needed squares is 17
+         * we choose 25 random squares
+         */
     private void createRandomGame() {
         ArrayList<int[]> usedCoordinates = new ArrayList<>();
 

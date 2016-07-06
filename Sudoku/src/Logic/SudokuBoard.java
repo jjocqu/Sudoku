@@ -21,8 +21,20 @@ public class SudokuBoard {
      *
      * @return copy of 2D array
      */
-    public SudokuField[][] getBoard() {
-        return board.clone();
+    public SudokuBoard getBoardCopy() {
+        SudokuBoard copy = new SudokuBoard();
+
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (this.getSquareValue(i, j) == 0) {
+                    copy.emptySquare(i, j);
+                } else {
+                    copy.setSquare(i, j, this.getSquareValue(i, j));
+                }
+            }
+        }
+
+        return copy;
     }
 
     public void setSquare(int row, int col, int value) {
