@@ -1,8 +1,6 @@
 package Logic.Solvers;
 
-import Logic.RandomNumberGenerator;
-
-import java.util.Arrays;
+import Logic.Utils.RandomNumberGenerator;
 
 /**
  * Created by jens on 7/5/2016.

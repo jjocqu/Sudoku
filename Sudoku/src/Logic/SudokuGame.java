@@ -3,8 +3,8 @@ package Logic;
 import Logic.Generators.FullGenerator;
 import Logic.Generators.SudokuGenerator;
 import Logic.Solvers.BacktrackSolver;
-import Logic.Solvers.GeneratorSolver;
 import Logic.Solvers.SudokuSolver;
+import Logic.Utils.RandomNumberGenerator;
 
 import java.util.ArrayList;
 
@@ -114,24 +114,25 @@ public class SudokuGame {
     //generates solution with backtracksolver
     public boolean generateSolution() {
         //first clear all filled in fields by user (they could be wrong)
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                emptySquare(i, j);
-            }
-        }
+        clearGame();
 
         //use solver
         SudokuSolver solver = new BacktrackSolver();
         return solver.solveSudoku(this);
     }
 
-    public void generateGame() {
-        //clear all previous fields
+    public void clearGame() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 emptySquare(i, j);
             }
         }
+    }
+
+    public void generateGame() {
+        //clear all previous fields
+        clearGame();
+
         //generate new game
         SudokuGenerator generator = new FullGenerator();
         generator.generateSudoku(this);

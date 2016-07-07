@@ -1,11 +1,11 @@
 package Logic.Generators;
 
-import Logic.RandomNumberGenerator;
-import Logic.Solvers.BacktrackSolver;
+import Logic.Utils.RandomNumberGenerator;
 import Logic.Solvers.GeneratorSolver;
 import Logic.Solvers.RandomBacktrackSolver;
 import Logic.Solvers.SudokuSolver;
 import Logic.SudokuGame;
+import Logic.Utils.Timer;
 
 import java.util.ArrayList;
 
@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 public class FullGenerator implements SudokuGenerator{
 
-    private int toRemove = 60;
+    private int toRemove = 45;
 
     //number of removed cells
     private int removed = 0;
@@ -53,6 +53,7 @@ public class FullGenerator implements SudokuGenerator{
             //solve copy with Generator Solver
             generatorSolver = new GeneratorSolver(val, x, y);
             generatorSolver.solveSudoku(copy);
+
             boolean solved = copy.hasWon();
 
             if (solved) { //solution is not unique
@@ -62,7 +63,7 @@ public class FullGenerator implements SudokuGenerator{
             }
         }
 
-        System.out.println(removed);
+        //System.out.println(removed);
     }
 
     private void fillPossibleLocations(SudokuGame game) {
